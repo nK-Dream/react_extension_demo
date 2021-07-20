@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
-import Count from "./components/1_setState/2_setState_2method";
+// import Count from "./components/1_setState/1_setState_Sync_Async"
+import Demo from "./components/2_lazyLoad";
 
 export default class App extends Component {
     render() {
         return (
             <div>
-                <Count/>
+                {/* <Count/> */}
+                <Demo/>
             </div>
         )
     }

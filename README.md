@@ -23,3 +23,17 @@
                 (1).如果新状态不依赖于原状态 ===> 使用对象方式
                 (2).如果新状态依赖于原状态 ===> 使用函数方式
                 (3).如果在setState执行后获取最新的状态数据，要在第二个callback函数中读取
+
+
+    三、路由组件的懒加载
+
+        //1.通过React的lazy函数配合import()函数动态加载路由组件 ===> 路由组件代码会被分开打包
+            const Login = lazy(import('xxx/xxxx/test'))
+
+        //2.通过<Suspense>指定在加载得到路由打包文件前显示一个自定义loading界面
+            <Suspense>
+                <Switch>
+                    <Router path="/xxx" component={Xxxx}>
+                    <Redirect to="/login">
+                </Switch>
+            </Suspense>
