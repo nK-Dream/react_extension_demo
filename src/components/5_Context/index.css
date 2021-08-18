@@ -1,0 +1,16 @@
+.parent{
+    width: 800px;
+    margin-top: 20px;
+    background: orange;
+    padding: 10px;
+}
+
+.child{
+    background: skyblue;
+    padding: 10px;
+}
+
+.grand{
+    background: gray;
+    padding: 10px;
+}
