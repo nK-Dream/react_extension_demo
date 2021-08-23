@@ -144,3 +144,47 @@
     项目中一般使用PureComponent来优化    
 
 ## render props
+
+### 如何向组件内部动态传入带内容的结构(标签)？
+    vue中：
+        使用slot技术，也就是通过组件标签体传入结构 <A><B/></A>
+    React中：
+        使用children props：通过组件标签体传入结构
+        使用render props：通过组件标签属性传入结构,而且可以传递数据,一般用render函数属性
+
+### children props
+    <A>
+        <B>xxxxx</B>
+    </A>
+    {this.props.children}
+    问题：如果B组件需要A组件内的数据。 ==>  做不到
+
+### render props
+    <A render={(data) => <C data={data}></C>}></A>
+    A组件： {this.props.render(内部state数据)}
+    C组件：读取A组件传入的数据显示 {this.props.data}
+
+## 错误边界
+### 理解：
+    错误边界(Error boundary): 用来捕获后代组件错误，渲染出备用页面
+
+### 特点：
+    只能捕获后代组件生命周期产生的错误，不能捕获自己组件产生的错误和其他组件在合成事件、定时器中产生的错误
+
+### 使用方式：
+    getDerivedStateFromError配合componentDidCatch
+
+    // 生命周期函数，一旦后台组件报错，就会触发
+    static getDerivedStateFromError(error){
+        console.log(error);
+        //在render之前触发
+        //返回新的state
+        return {
+            hasError: true,
+        }
+    }
+
+    componentDidCatch(error, info){
+        //统计页面的错误，发送请求发送到后台去
+        console.log(error, info)
+    }
